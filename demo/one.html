@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css doodle</title>
+  <style>
+    * { margin: 0; padding: 0; }
+    css-doodle {
+      --rule: (
+        :doodle {
+          @grid: 20 / 100vw 100vh;
+          background: #000;
+        }
+        font-size: 1.4em;
+        color: hsl(136, 100%, 85%);
+        opacity: @pick(0.1, 0.2, 0.3);
+        :after {
+          content: \@hex(@rand(20000, 3000));
+        }
+        @col(6n) {
+          animation: ani 3s @calc((@i - @i % 20) * 0.1/20 + 1)s infinite;
+        }
+
+        @col(6n+1) {
+          animation: ani2 3s @calc((@i - @i % 20) * 0.1/20)s infinite;
+        }
+
+        @col(6n+2) {
+          animation: ani2 2s @calc((@i - @i % 20) * 0.1/20 + 2)s infinite;
+        }
+
+        @col(6n+3) {
+          animation: ani 3s @calc((@i - @i % 20) * 0.1/20 + 0.8)s infinite;
+        }
+
+        @col(6n+4) {
+          animation: ani 2s @calc((@i - @i % 20) * 0.1/20 + 1.5)s infinite;
+        }
+
+        @col(6n+5) {
+          animation: ani2 3s @calc((@i - @i % 20) * 0.1/20 + 0.9)s infinite;
+        }
+
+        @keyframes ani {
+          0% {
+            opacity: @pick(0.1, 0.2, 0.3);
+          }
+          10%, 90%{
+            opacity: 1;
+          }
+          90% {
+            opacity: @pick(0.1, 0.2, 0.3);
+          }
+        }
+        @keyframes ani2 {
+          0% {
+            opacity: @pick(0.1, 0.2, 0.3);
+          }
+          10%, 70%{
+            opacity: 1;
+          }
+          70% {
+            opacity: @pick(0.1, 0.2, 0.3);
+          }
+        }
+      )
+    }
+  </style>
+</head>
+<body>
+  <css-doodle click-to-update use="var(--rule)"></css-doodle>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.39.1/css-doodle.min.js"></script>
+</body>
+</html>
